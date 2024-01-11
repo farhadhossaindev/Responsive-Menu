@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import logo from "../assets/logo.png"
+import logo from "../assets/Logo.png"
 import { Link, } from 'react-router-dom'
 import NavLinks from './NavLinks'
 import Button from './button'
