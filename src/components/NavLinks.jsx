@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { links } from './MyLinks'
+import { BiChevronDown } from "react-icons/bi";
+import { BiChevronUp } from "react-icons/bi";
 
 function NavLinks() {
 
@@ -15,8 +17,17 @@ function NavLinks() {
         links.map(link => (
           <div>
             <div className='px-3 text-left md:cursor-pointer group'>
-              <h1 className='py-7'
-                onClick={() => { heading !== link.name ? setHeading(link.name) : setHeading(""); setSubHeading(); }}>{link.name}</h1>
+              <h1 className='py-7 flex justify-between items-center md:pr-0 pr-5'
+                onClick={() => { heading !== link.name ? setHeading(link.name) : setHeading(""); setSubHeading(); }}>{link.name}
+
+                <span className='text-xl md:hidden inline'>
+                  {heading === link.name ? <BiChevronUp /> : <BiChevronDown />}
+                </span>
+                <span className='text-xl md:mt-1 md:ml-2 md:block hidden '>
+                  {heading === link.name ? <BiChevronUp /> : <BiChevronDown />}
+                </span>
+
+              </h1>
               {link.submenu && (
                 <div>
                   <div className='absolute top-20 hidden group-hover:md:block hover:md:block'>
@@ -51,11 +62,17 @@ function NavLinks() {
                 link.sublinks.map((slinks) => (
                   <div>
                     <div>
-                      <h1 onClick={() => subHeading !== slinks.Head ? setSubHeading(slinks.Head) : setSubHeading('')} className='py-4 pl-7 font-semibold md:pr-0 pr-5'>{slinks.Head}</h1>
+                      <h1 onClick={() => subHeading !== slinks.Head ? setSubHeading(slinks.Head) : setSubHeading('')} className='py-4 pl-7 font-semibold md:pr-0 pr-5 flex justify-between items-center '>{slinks.Head}
+
+                        <span className='text-xl md:mt-1 md:ml-2 inline'>
+                          {subHeading === slinks.Head ? <BiChevronUp /> : <BiChevronDown />}
+                        </span>
+
+                      </h1>
                       <div className={`${subHeading === slinks.Head ? "md:hidden" : "hidden"}`}>
                         {slinks.sublink.map((slink) => (
                           <li className='py-3 pl-14'>
-                            <Link to={slinks.link}>{slink.name}</Link>
+                            <Link to={slinks.link} className='hover:text-yellow-400'>{slink.name}</Link>
                           </li>
                         ))}
                       </div>
