@@ -1,20 +1,35 @@
-
-import Button from "../components/Button"
-import "../style/style.css"
+import React from 'react'
+import '../Style/Style.css';
+import Slider from '../components/Slider'
+import Layout from '../Layout/Layout';
+import { Helmet } from 'react-helmet';
+import { useAuth } from '../context/auth';
 
 function Home() {
+  const currentYear = new Date().getFullYear();
+  const [auth, setAuth] = useAuth()
   return (
+
     <>
-      <section className=" bg-Hero bg-cover font-[ poppins] md:bg-top bg-center" >
-        <div className="flex flex-col justify-center text-center items-center h-lvh">
-          <h2 className=" text-white text-2xl font-medium">Feshion AaMeRaa</h2>
-          <h1 className="md:text-3xl text-3xl font-semibold py-5 text-white">Items every people should have</h1>
-          <div className="text-xl">
-            <Button />
-          </div>
-        </div>
-      </section>
+      <Helmet>
+        <title>Home</title>
+        <meta name="description" content="B Discover premium, stylish clothing designed for modern elegance. Perfect for every occasion, our collection redefines fashion with timeless pieces" />
+        <meta name="keywords" content="Fashion Clothing, Stylish Trendy Outfits, Designer Clothes, Women's Fashion, Men's Fashion, Kids' Clothing, Sustainable Fashion, Eco-friendly Clothing, Luxury Clothing, Urban Fashion, Bohemian Style, Minimalist Fashion, Activewear, Athleisure, Casual Wear, Formal Wear, Vintage Clothing, Boutique Fashion, Fashion Accessories, High-end Fashion, Trendy Tops, Elegant Dresses, Fashionable Outerwear, Chic Clothing  " />
+        <meta name="author" content='QC Artistry' />
+      </Helmet>
+
+      <div className='h-[90vh]'>
+        {/* -------------------- Slider ---------------------- */}
+        <Slider />
+      </div>
+
+      <pre>
+        {JSON.stringify(auth, null, 4) }
+      </pre>
+
     </>
+
+
   )
 }
 
